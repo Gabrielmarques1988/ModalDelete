@@ -1,0 +1,47 @@
+<div class="w-full flex pt-4 flex-col xl:flex-row ">
+    <div class="w-5/5 mx-auto lg:w-4/5 lg:mx-auto md:w-4/5 md:mx-auto sm:w-4/5 sm:mx-auto h-full relative overflow-hidden sm:rounded-lg ">
+      <table class="w-full border-b text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs  text-white uppercase bg-[color:var(--cinza-principal-escuro)] dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-10">
+              <tr>
+                  <th scope="col" class="px-2 py-3">
+                      Nome
+                  </th>
+                  <th scope="col" class="px-2 py-3">
+                      E-mail
+                  </th>
+                  <th scope="col" class="px-2 py-3 text-center">
+                      Status
+                  </th>
+              </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            @for (usuario of listaUsuarios; track usuario) {
+              <tr (click)="detalharUsuario(usuario)" class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="flex items-center px-2 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{usuario.usuario_nome}}
+                </th>
+                <td class="px-2 py-2">
+                  {{usuario.usuario_email}}
+                </td>
+                <td class="px-3 py-2 text-center">
+                  @if(usuario.usuario_status==0){
+                    <span class="inline-flex items-center bg-red-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                      Inativo
+                    </span>
+                  }
+                  @else if (usuario.usuario_status==1){
+                    <span class="inline-flex items-center bg-green-200 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                      Ativo
+                    </span>
+                  }
+                </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="w-5/5 mx-auto lg:w-4/5 lg:mx-auto md:w-4/5 md:mx-auto sm:w-4/5 sm:mx-auto xl:px-4 xl:pt-0 lg:pt-4 md:pt-4 sm:pt-4">
+      <app-tabs-usuario/>
+    </div>
+  </div>
+    

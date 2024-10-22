@@ -1,0 +1,130 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  </style>
+
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="sm:hidden">
+      <label for="tabs" class="sr-only">Select tab</label>
+      <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option>Arquivos</option>
+          <option>Comentarios</option>
+          <option>MarkUp</option>
+          <option>Versoes</option>
+      </select>
+  </div>
+  <ul class="hidden text-sm font-medium text-center text-branco-principal divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+      <li class="w-full">
+          <button id="stats-tab" data-tabs-target="#arquivo" type="button" role="tab" aria-controls="arquivo" aria-selected="true" class="flex items-center justify-center inline-block w-full p-3 rounded-ss-lg bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+            <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+            </svg>
+            Arquivo
+          </button>
+      </li>
+
+      <!--Caso seja a TAB de arquivos-->
+      @if (teste) {
+        <li class="w-full">
+          <button id="about-tab" data-tabs-target="#comentario" type="button" role="tab" aria-controls="comentario" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+            <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="current" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"/>
+            </svg>
+            Comentario
+          </button>
+      </li>
+      <li class="w-full">
+        <button id="faq-tab" data-tabs-target="#markup" type="button" role="tab" aria-controls="markup" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+          <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd"/>
+          </svg>
+          MarkUp
+        </button>
+    </li>
+    <li class="w-full">
+      <button id="faq-tab" data-tabs-target="#versoes" type="button" role="tab" aria-controls="versoes" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 rounded-se-lg bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+        <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M8 5a1 1 0 0 1 1-1h11a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-1a1 1 0 1 1 0-2h1V6H9a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M4 7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H4Zm0 11v-5.5h11V18H4Z" clip-rule="evenodd"/>
+        </svg>
+        Versões
+      </button>
+    </li> <!--Caso seja a TAB de lista compartilhada-->
+    } @else {
+        <li class="w-full">
+          <button id="about-tab" data-tabs-target="#convidados" type="button" role="tab" aria-controls="convidados" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+            <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="current" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"/>
+            </svg>
+            Convidados
+          </button>
+      </li>
+      <li class="w-full">
+        <button id="faq-tab" data-tabs-target="#visualizacao" type="button" role="tab" aria-controls="visualizacao" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+          <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M13 11.15V4a1 1 0 1 0-2 0v7.15L8.78 8.374a1 1 0 1 0-1.56 1.25l4 5a1 1 0 0 0 1.56 0l4-5a1 1 0 1 0-1.56-1.25L13 11.15Z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M9.657 15.874 7.358 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.358l-2.3 2.874a3 3 0 0 1-4.685 0ZM17 16a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H17Z" clip-rule="evenodd"/>
+          </svg>
+          Visualização
+        </button>
+    </li>
+    <li class="w-full">
+      <button id="faq-tab" data-tabs-target="#geral" type="button" role="tab" aria-controls="geral" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 rounded-se-lg bg-preto-tabela-tab text-branco-principal hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+        <svg class="w-6 h-6 mr-2 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M8 5a1 1 0 0 1 1-1h11a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-1a1 1 0 1 1 0-2h1V6H9a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M4 7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H4Zm0 11v-5.5h11V18H4Z" clip-rule="evenodd"/>
+        </svg>
+        Geral
+      </button>
+    </li>
+      }
+  </ul>
+
+  <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
+      <div class=" p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="arquivo" role="tabpanel" aria-labelledby="arquivo-tab">
+
+          <!-- Conteúdo Arquivo -->
+          <app-detalhes-visualizacao></app-detalhes-visualizacao>
+
+      </div>
+      @if (teste) {
+      <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="comentario" role="tabpanel" aria-labelledby="comentario-tab">
+
+          <!-- Conteúdo Comentário -->
+          <app-comentario-arquivo></app-comentario-arquivo>
+
+      </div>
+      <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800" id="markup" role="tabpanel" aria-labelledby="markup-tab">
+
+          <!-- Conteúdo MarkUp -->
+          <app-markup></app-markup>
+
+      </div>
+      <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800 overflow-y-auto max-h-[580px]" id="versoes" role="tabpanel" aria-labelledby="versoes-tab">
+        <!-- Conteúdo de Versões -->
+          <app-versoes-arquivo />
+
+      </div>
+      } @else {
+        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="convidados" role="tabpanel" aria-labelledby="convidados-tab">
+
+          <!-- Conteúdo Convidados -->
+           <app-tab-convidados></app-tab-convidados>
+
+
+      </div>
+      <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800" id="visualizacao" role="tabpanel" aria-labelledby="visualizacao-tab">
+
+          <!-- Conteúdo Visualizacao -->
+          <app-tab-visualizacao></app-tab-visualizacao>
+
+      </div>
+      <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800 overflow-y-auto max-h-[580px]" id="geral" role="tabpanel" aria-labelledby="geral-tab">
+
+        <!-- Conteúdo Geral -->
+         <app-tab-geral></app-tab-geral>
+
+      </div>
+      }
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.error-label {
+  color: red;
+}
+
+.text-stone-500 {
+  color: #6b7280;
+}
+
+body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

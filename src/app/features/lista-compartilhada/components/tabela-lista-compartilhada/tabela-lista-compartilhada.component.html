@@ -1,0 +1,87 @@
+<div>
+  <div class="z-0">
+    <div class="flex content-center justify-between items-center ml-8">
+      <div class="flex w-[100%] justify-end">
+        <app-btn-lista-compartilhada></app-btn-lista-compartilhada>
+      </div>
+    </div>
+    <div class="flex ml-8 pt-4"></div>
+<div class="h-[670px] w-full overflow-x-auto container-snap max-h-[715px] shadow-md sm:rounded-lg">
+  <div>
+    <table class="bg-white w-full rounded-lg border-collapse text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-white uppercase bg-gray-800 dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-10">
+        <tr>
+          <th scope="col" class="p-4 text-white">Nome</th>
+          <th scope="col" class="p-4 text-white">Data</th>
+          <th scope="col" class="p-4 text-white">Usuários</th>
+          <th scope="col" class="p-4 text-white text-center">Arquivos</th>
+          <th scope="col" class="p-4 text-white text-center">Status</th>
+          <th scope="col" class="p-4 text-white text-center">Editar</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+        @for (listaCompartilhada of listaCompartilhada; track listaCompartilhada) {
+          @if (listaCompartilhada.lista_compartilhada_status !== 0) {
+            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 hover:cursor-pointer">
+              <td class="p-4 hover:font-bold font-medium text-gray-900 whitespace-nowrap dark:text-white" (click)="listaCompartilhadaNavegacao(listaCompartilhada.lista_compartilhada_id);" >
+                {{ listaCompartilhada.lista_compartilhada_descricao }}
+              </td>
+              <td class="p-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ listaCompartilhada.lista_compartilhada_data | date: 'dd/MM/yyyy HH:mm:ss' }}
+              </td>
+              <td class="p-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ listaCompartilhada.quantidade_usuarios }}
+              </td>
+              <td class="p-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ listaCompartilhada.quantidade_arquivos }}
+              </td>
+              <td class="p-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                @if (listaCompartilhada.lista_compartilhada_status == 1) {
+                  <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                    <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                    Ativo
+                  </span>
+                } @else if (listaCompartilhada.lista_compartilhada_status == 2) {
+                  <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                    <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                    Bloqueado
+                  </span>
+                } @else if (listaCompartilhada.lista_compartilhada_status == 3) {
+                  <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                    <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                    Desativado
+                  </span>
+                } @else if (listaCompartilhada.lista_compartilhada_status == 0) {
+                  <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                    <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                    Inativo
+                  </span>
+                } @else if (listaCompartilhada.lista_compartilhada_status == -1) {
+                  <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                    <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                    Deletado
+                  </span>
+                }
+              </td>
+              <td class="p-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <button data-modal-target="editar-modal" data-modal-toggle="editar-modal" type="button" (click)="selecionarListaCompartilhada(listaCompartilhada)">
+                  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415 1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z" clip-rule="evenodd"/>
+                  </svg>
+                </button>
+                <app-modal-editar-lista-compartilhada></app-modal-editar-lista-compartilhada>
+              </td>
+            </tr>
+          }
+        } @empty {
+          <tr>
+            <td colspan="6" class="p-4 text-center">Nenhum dado disponível.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  </div>
+</div>

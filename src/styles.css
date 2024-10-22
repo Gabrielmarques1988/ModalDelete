@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --branco-principal: #FFFFFF;
+  --cinza-background: #F5F5F5;
+  --cinza-border: #DEDEDE;
+  --cinza-secundario: #F2F2F2;
+  --preto-total: #000000;
+  --cinza-principal-escuro: #262626;
+  --cinza-principal-medio: #434343;
+  --cinza-principal-claro: #7B7B7B;
+  --azul-claro: #4892BB;
+  --azul-medio: #4381A7;
+  --azul-escuro: #376184;
+
+  --preto-principal: #262626;
+  --cinza-selecionado: #F3F4F6;
+  --azul-selecao-tabela: #4381A72E;
+  --cinza-input: #F9FAFB;
+  --vermelho-deletar: #9B1C1C;
+  --vermelho-tenho-certeza: #C81E1E;
+  --vermelho-deletar-aviso: #FBD5D5;
+  --verde-criado-aviso: #DEF7EC;
+  --status-desativado: #FDF6B2;
+  --status-texto-desativado: #633112;
+  --status-bloqueado: #FDE8E8;
+  --status-texto-bloqueado: #9B1C1C;
+  --status-ativo: #DEF7EC;
+  --status-texto-ativo: #03543F;
+  --preto-tabela-tab: #262626;
+  --cinza-tabela-tab-texto: #9CA3AF;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:"Inter", sans-serif;
+
+}

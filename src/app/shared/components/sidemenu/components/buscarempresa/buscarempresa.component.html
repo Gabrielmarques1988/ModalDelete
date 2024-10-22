@@ -1,0 +1,66 @@
+<div  class="flex-wrap flex flex-col justify-center items-center m-0 pt-[10px]">
+  <button id="dropdownDelayButton" data-dropdown-toggle="dropdownDelay" data-dropdown-delay="500" type="button"
+      class="flex items-center justify-between  pt-[3%] mb-[5%] text-[#9CA3AF] text-[14px] font-sans bg-gray-50 pl-[10%] pb-[3%] pr-[10%] w-[232px] h-[42px] leading-[14px] border-gray-200 border-[0.99px] font-normal rounded-lg text-sm px-5 py-2.5 text-center">
+      Listas de Empresas
+      <svg (click)="abrirDropBuscarEmpresa()"class="relative w-2.5 h-2.5 ms-3" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+      </svg>
+  </button>
+  <div id="dropdownDelay"  class="z-10 hidden w-[250px] bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+    <ul class="py-2 text-sm text-gray-700 h-[150px] overflow-y-auto dark:text-gray-200" aria-labelledby="dropdownDelayButton">
+      @for(empresa of empresas; track $index){
+      <li>
+        <a (click)="selecionarEmpresa(empresa.empresa_id,empresa.empresa_nome)"
+           class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{empresa.empresa_nome}}</a>
+      </li>
+      }
+    </ul>
+  </div>
+@if(empresaSelecinaButton== true){
+  <div  class="flex items-center text-ellipsis overflow-hidden whitespace-nowrap
+          pt-[3%] mb-[5%] bg-[#EAEAEA] pl-[3%] pb-[5px] w-[232px] h-[42px]
+          leading-[14px] border-gray-200 border-[0.99px] font-normal rounded-lg  text-center">
+          <svg class="w-[25px] h-[25px] text-[#797979] mr-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 4h12M6 4v16M6 4H5m13 0v16m0-16h1m-1 16H6m12 0h1M6 20H5M9 7h1v1H9V7Zm5 0h1v1h-1V7Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z"/>
+          </svg>
+          <div  class="text-left w-[140px]  text-[#9CA3AF] font-inter leading-[21px]  mr-[17px] text-[14px] font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+            {{empresaNomeselecionada}}
+          </div>
+          <svg (click)="removerEmpresaSelecionada()"   class="w-[15px] h-[15px] cursor-pointer text-[#797979]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+          </svg>
+
+  </div>
+}
+<div class="h-[2px] mb-2 w-[100%] bg-gray-200">
+</div>
+
+@if(empresaSelecinaButton == false){
+  <div class=" pt-[3%] mb-[5%] font-sans bg-gray-50 w-[232px]  border-gray-200 border-[0.99px] px-5 py-2.5 rounded-lg shadow-md">
+    <div class="h-[30px]">
+    <h4 class="text-[14px] text-black font-semibold">
+      Últimas visitadas</h4>
+    </div>
+    <ul class="space-y-2">
+      @for(empresa of empresasRecentes; track $index){
+        <li class="flex space-x-2">
+
+          <div class="content-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  class="size-4 fill-gray-400">
+            <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+          </svg>
+          </div>
+
+          <span class="text-sm font-inter text-[#9CA3AF] align-middle  border-transparent" >{{ empresa }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+
+
+
+  <div class="h-[2px] w-[100%] bg-gray-200">
+  </div>
+}
+

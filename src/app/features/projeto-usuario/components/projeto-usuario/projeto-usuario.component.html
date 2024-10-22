@@ -1,0 +1,70 @@
+<div class="pl-[32px] ">
+  <div  class="text-[20px] h-[36px] mb-[20px]">
+    <a>{{empresaNomeselecionada}}</a>
+  </div>
+
+  <div class="max-h-[112px] min-h-[40px] w-[100%] mb-[20px]">
+    @if(this.decodedToken.usuario_tipo != 3){
+      <div class="mb-[36px]">
+        <button type="button" (click)="tabAtiva = 'projetos'"
+        [ngClass]="{'bg-[#4381A7]': tabAtiva === 'projetos', 'bg-black': tabAtiva !== 'projetos'}"
+
+        class="border-gray-700 text-blue-50 rounded-l-[4px] border-[0.99px] h-[34px] w-[80px] text-[14px] font-medium font-inter">
+          <a>Projetos</a>
+        </button>
+        <button type="button"(click)="tabAtiva = 'usuarios'"
+        [ngClass]="{'bg-[#4381A7]': tabAtiva === 'usuarios', 'bg-black': tabAtiva !== 'usuarios'}"
+        class="border-gray-700 text-blue-50 rounded-r-[4px] border-[0.99px] h-[34px] w-[80px] text-[14px] font-medium font-inter ">
+          <a>Usuários</a>
+        </button>
+      </div>
+    }
+    <div>
+      @if(tabAtiva === 'projetos'){
+          <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </div>
+              <input type="search" id="default-search" class="w-[384px] h-[42px] block p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar Projetos" required />
+              <div class="absolute inset-y-0 end-0">
+                <app-modal-criar-projeto></app-modal-criar-projeto>
+              </div>
+          </div>
+      }
+      @if(tabAtiva === 'usuarios'){
+      <form>
+          <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar Usuário</label>
+          <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </div>
+              <input type="search" id="default-search" class="w-[384px] h-[42px] block p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50
+               focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar Usuário" required />
+              <div class="absolute inset-y-0 end-0">
+                <button class="border-gray-700  text-blue-50 rounded-lg border-[0.99px] h-[34px] w-[118px] text-[14px] font-medium font-inter bg-[#262626]">
+                  Novo Usuário
+                </button>
+              </div>
+          </div>
+      </form>
+      }
+    </div>
+  </div>
+  @if(tabAtiva === 'projetos'){
+    <div>
+      <app-projeto></app-projeto>
+    </div>
+  }
+  @if(tabAtiva === 'usuarios'){
+    <div>
+    </div>
+  }
+
+
+</div>
+

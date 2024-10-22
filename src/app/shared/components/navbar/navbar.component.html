@@ -1,0 +1,67 @@
+<nav class="bg-[#262626] w-full z-10" >
+  <div class="mx-auto w-full px-2 sm:px-6 ">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start">
+        <div class="flex flex-shrink-0 items-center">
+          <img alt="G+P" loading="lazy" width="284" height="119" decoding="async" data-nimg="1" class="w-32 text-white h-auto" src="../../../assets/images/g14.png">
+        </div>
+      </div>
+      @if (this.decodedToken.usuario_tipo == 1) {
+      <div class="p-[3%]">
+        <ul class="flex space-x-9">
+          <li class="flex cursor-pointer" routerLink="/dashboard">
+            <svg class="w-[20px] h-[20px] text-gray-50  dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5"/>
+            </svg>
+            <span class="font-sans text-[14px] font-normal ml-[10px] leading-[21px] text-[#ffffff]">Dashboard</span>
+          </li>
+
+          <li class="flex cursor-pointer" routerLink="/empresa">
+            <svg class="w-[20px] h-[20px] text-gray-50" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 4h12M6 4v16M6 4H5m13 0v16m0-16h1m-1 16H6m12 0h1M6 20H5M9 7h1v1H9V7Zm5 0h1v1h-1V7Zm-5 4h1v1H9v-1Zm5 0h1v1h-1v-1Zm-3 4h2a1 1 0 0 1 1 1v4h-4v-4a1 1 0 0 1 1-1Z"/>
+            </svg>
+            <span  class="font-sans text-[14px] font-normalleading-[21px] ml-[10px] text-[#ffffff]">Empresas</span>
+          </li>
+          <li class="flex">
+            <svg class="w-[20px] h-[20px] text-gray-50 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+            </svg>
+            <span class="font-sans text-[14px] font-normal leading-[21px] ml-[10px] text-[#ffffff]">Usuários</span>
+          </li>
+          <li routerLink="/listaCompartilhada" class="flex cursor-pointer">
+            <svg class="cursor-pointer w-[20px] h-[20px] text-gray-50 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2M12 4v12m0-12 4 4m-4-4L8 8"/>
+            </svg>
+
+            <span class="font-sans text-[14px] font-normal leading-[21px] ml-[10px] text-[#ffffff]">Lista Compartilhada</span>
+          </li>
+        </ul>
+      </div>
+    }
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-4">
+        <button (click)="toggleDropdown()" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-expanded="false" aria-haspopup="true">
+          <span class="absolute -inset-1.5"></span>
+          <span class="sr-only">View notifications</span>
+          <app-notification></app-notification>
+        </button>
+
+        <div class="relative ml-3">
+          <div>
+            <button (click)="toggleDropdown()" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+              <span class="absolute -inset-1.5"></span>
+              <span class="sr-only">Open user menu</span>
+              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+            </button>
+          </div>
+          <div [hidden]="!dropdown_open" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Perfil</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Configurações</a>
+            <a href="loginemail" (click)="logoOut()" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sair</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+

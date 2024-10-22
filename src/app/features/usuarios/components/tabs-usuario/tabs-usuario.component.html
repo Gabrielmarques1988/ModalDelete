@@ -1,0 +1,36 @@
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+
+
+
+    <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+        <li class="w-full">
+            <button id="perfil-tab" data-tabs-target="#perfil" type="button" role="tab" aria-controls="perfil" aria-selected="true" class="flex items-center justify-center inline-block w-full p-3 rounded-ss-lg bg-[color:var(--cinza-principal-escuro)]  text-white hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+              <svg class="w-6 h-6 mr-2 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              </svg>
+              Perfil
+            </button>
+        </li>
+        <li class="w-full">
+            <button id="permissao-tab" data-tabs-target="#permissao" type="button" role="tab" aria-controls="permissao" aria-selected="false" class="flex items-center justify-center inline-block w-full p-3 bg-[color:var(--cinza-principal-escuro)]  text-white hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+              <svg class="w-6 h-6 mr-2 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="current" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 4v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2m6-16v2m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v10m6-16v10m0 0a2 2 0 1 0 0 4m0-4a2 2 0 1 1 0 4m0 0v2"/>
+              </svg>
+              Permissões
+            </button>
+        </li>
+    </ul>
+    <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
+      <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="perfil" role="tabpanel" aria-labelledby="perfil-tab">
+          <!-- Conteúdo Perfil usuario -->
+          <app-perfil-usuario/>
+      </div>
+      <div class="hidden bg-white rounded-lg  dark:bg-gray-800" id="permissao" role="tabpanel" aria-labelledby="permissao-tab">
+          <!-- Conteúdo Permissão -->
+      </div>
+    </div>
+  </div>
+  
+
+  

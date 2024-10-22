@@ -1,0 +1,54 @@
+<div class="flex justify-center"></div>
+  <button (click)="openModal()" class="px-14 py-3 text-md font-semibold text-white inline-flex items-center bg-gray-800 hover:bg-gray-600 rounded-lg text-center" type="button">
+    Nova Lista
+  </button>
+
+<div *ngIf="alertVisible" [ngClass]="{
+  'flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50': alertType === 'success',
+  'flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50': alertType === 'error'
+}" role="alert" class="fixed bottom-4 right-4 z-50">
+  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-2 hover:bg-green-200 inline-flex items-center justify-center h-10 w-10" (click)="closeAlert()" aria-label="Close">
+    <span class="sr-only">Close</span>
+    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+    </svg>
+  </button>
+  <div class="ms-3 text-sm font-medium">
+    {{ alertMessage }}
+  </div>
+</div>
+
+<div id="crud-modal" tabindex="-1" [class.hidden]="!modalOpen" aria-hidden="true" class="fixed inset-0 flex items-center justify-center w-full p-4 overflow-x-hidden overflow-y-auto" style="top: 20%;">
+  <div class="relative w-full max-w-2xl max-h-full">
+    <div class="relative bg-white rounded-lg shadow-lg">
+      <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+        <h3 class="text-lg font-semibold text-gray-900">
+          Lista Compartilhada
+        </h3>
+        <button id="close-modal-btn" class="focus:outline-none" aria-label="Fechar modal" (click)="closeModal()">
+          <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L17.94 6M18 18L6.06 6"/>
+          </svg>
+        </button>
+      </div>
+
+      <form class="space-y-4 p-4" [formGroup]="listaForm" (ngSubmit)="submitForm()">
+        <div>
+          <label for="descricao" class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
+          <input type="text" id="descricao" formControlName="lista_compartilhada_descricao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Documentação Barra Shopping" required>
+        </div>
+        <div>
+          <label for="usuario_id" class="block mb-2 text-sm font-medium text-gray-900">Usuário ID</label>
+          <input type="number" id="usuario_id" formControlName="usuario_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ID do Usuário" required>
+        </div>
+        <div>
+          <label for="projeto_id" class="block mb-2 text-sm font-medium text-gray-900">Projeto ID</label>
+          <input type="number" id="projeto_id" formControlName="projeto_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ID do Projeto" required>
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Criar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<form class="space-y-2">
+  
+
+      <header class="flex items-center justify-between mb-8 bg-[#184351] h-[160px]">
+          <div class="flex items-center">
+              <img class="h-32 m-4 rounded-full ml-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="Rounded avatar">
+              <div class="font-medium text-white ml-4">
+                  <div>
+                    <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                    <input type="text" id="nome" class="w-fill bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{usuario?.usuario_nome}} disabled />
+                  </div>
+                    <div>
+                      <label for="tipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
+                      <input type="text" id="Tipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{usuario?.usuario_tipo}} disabled />
+                    </div>
+                </div>
+          </div>
+      </header>
+      <div class="bg-white rounded-lg shadow-md p-6">
+          <form class="grid gap-6 mb-6 md:grid-cols-2">
+              <div>
+                  <label for="empresa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Empresa</label>
+                  <input type="text" id="empresa" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{usuario?.empresa_id}} disabled
+                  />
+              </div>
+              <div>
+                  <label for="cargo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cargo</label>
+                  <input type="text" id="cargo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{usuario?.usuario_cargo}} disabled />
+              </div>
+              <div class="mb-6">
+                <label for="endereco" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Endereço</label>
+                <input type="text" id="endereco" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{usuario?.usuario_endereco}} disabled/>
+              </div>
+              <div>
+                  <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                  <select id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>Selecione Status</option>
+                      <option value="Ativo">Ativo</option>
+                      <option value="Inativo">Inativo</option>
+                  </select>
+              </div>
+          </form>
+          <div class="mb-6">
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+              <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " value={{usuario?.usuario_email}} disabled/>
+          </div>
+          </div>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    <button (click)="editarUsuario()" type="submit" class="px-6 py-4 mx-2  text-md font-semibold text-white inline-flex items-center bg-[color:var(--cinza-principal-escuro)] hover:bg-[color:var(--cinza-principal-medio)] rounded-lg text-center">
+      <svg class="w-6 h-6 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+      </svg>
+      Editar Usuário
+    </button>
+  
+  
+  
+  
+      <button (click)="deletarUsuario()" type="submit" class="px-6 py-4 text-md font-semibold text-white inline-flex items-center bg-[color:var(--cinza-principal-escuro)]  hover:bg-[color:var(--cinza-principal-medio)] rounded-lg text-center">
+    <svg class="w-6 h-6 text-branco-principal dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd"/>
+    </svg>
+    Deletar Usuário
+  </button>
+  
+  
+  
+  
+  </form>

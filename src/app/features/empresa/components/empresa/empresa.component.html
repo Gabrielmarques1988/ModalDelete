@@ -1,0 +1,189 @@
+<div class="pl-16 pr-4 sm:pr-16">
+  <div class="flex justify-end ">
+    <app-modal-criar-empresa></app-modal-criar-empresa>
+
+  </div>
+
+
+  <div class="relative h-auto overflow-x-auto shadow-md sm:rounded-lg">
+    <!-- Tabela para desktop-->
+    <table class="min-w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 hidden md:table">
+
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr class="text-white bg-[#262626]">
+          <th scope="col" class="px-6 py-3">
+            EMPRESA
+          </th>
+          <th scope="col" class="px-6 py-3 text-center">
+            DATA INICIO
+          </th>
+          <th scope="col" class="px-6 py-3 text-center">
+            USUÁRIOS
+          </th>
+          <th scope="col" class="px-6 py-3 text-center">
+            PROJETOS
+          </th>
+          <th scope="col" class="px-6 py-3 text-center">
+            ARQUIVOS
+          </th>
+          <th scope="col" class="px-6 py-3 text-center">
+            STATUS
+          </th>
+          <th scope="col" class="px-6 py-3 text-center">
+            EDITAR
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (empresa of paginatedEmpresas; track empresa) {
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="flex items-center  w-[500px] py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <img class="w-8 h-8 ml-3 mr-5 rounded-full" src="" alt="">
+              <p class="hover:font-bold cursor-pointer self-center text-ellipsis overflow-hidden whitespace-nowrap"  (click)="selecionarEmpresaNavegacao(empresa.empresa_id,empresa.empresa_nome)">
+                {{ empresa.empresa_nome }}</p>
+            </th>
+            <td class="px-3 py-2 text-center">
+              {{ empresa.empresa_data_cadastro | date: 'dd-MM-yyyy'}}
+            </td>
+            <td class="px-3 py-2 text-center">
+              {{ contagemUsuariosMap[empresa.empresa_id] }}
+            </td>
+            <td class="px-3 py-2 text-center">
+              {{ contagemProjetosMap[empresa.empresa_id] }}
+            </td>
+            <td class="px-3 py-2 text-center">
+              {{ contagemArquivosMap[empresa.empresa_id] }}
+            </td>
+            <td class="px-3 py-2 text-center">
+              @if (empresa.empresa_status == 1) {
+                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                  Ativo
+                </span>
+              } @else if (empresa.empresa_status == 2) {
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                  <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                  Bloqueado
+                </span>
+              } @else if (empresa.empresa_status == 3) {
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                  <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                  Desativado
+                </span>
+              } @else if (empresa.empresa_status == 0) {
+                <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                  <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                  Inativo
+                </span>
+              } @else if (empresa.empresa_status == -1) {
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                  <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                  Deletado
+                </span>
+              }
+            </td>
+            <td class="text-center px-3 py-2">
+              <button data-modal-target="editar-modal" data-modal-toggle="editar-modal" type="button" (click)="selecionarEmpresa(empresa)">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M17 10v1.126c.367.095.714.24 1.032.428l.796-.797 1.415 1.415-.797.796c.188.318.333.665.428 1.032H21v2h-1.126c-.095.367-.24.714-.428 1.032l.797.796-1.415
+                  1.415-.796-.797a3.979 3.979 0 0 1-1.032.428V20h-2v-1.126a3.977 3.977 0 0 1-1.032-.428l-.796.797-1.415-1.415.797-.796A3.975 3.975 0 0 1 12.126 16H11v-2h1.126c.095-.367.24-.714.428-1.032l-.797-.796 1.415-1.415.796.797A3.977 3.977 0 0 1 15 11.126V10h2Zm.406 3.578.016.016c.354.358.574.85.578 1.392v.028a2 2 0 0 1-3.409 1.406l-.01-.012a2 2 0 0 1 2.826-2.83ZM5 8a4 4 0 1 1 7.938.703 7.029 7.029 0 0 0-3.235 3.235A4 4 0 0 1 5 8Zm4.29 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h6.101A6.979 6.979 0 0 1 9 15c0-.695.101-1.366.29-2Z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <app-modal-editar-empresa></app-modal-editar-empresa>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <!-- Fim da Tabela-->
+
+    <!-- Início da versao para Mobile -->
+    <div class="md:hidden">
+      @for (empresa of paginatedEmpresas; track empresa) {
+        <div class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 p-4 mb-2 rounded-lg shadow">
+          <div class="flex items-center">
+            <img class="w-8 h-8 rounded-full mr-4" src="" alt="">
+            <div>
+              <p class="font-medium text-gray-900 dark:text-white">{{ empresa.empresa_nome }}</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Data Início: 21/08/2024</p>
+            </div>
+          </div>
+          <div class="mt-3 text-gray-700 dark:text-gray-300">
+            <p>Usuários: {{ contagemUsuariosMap[empresa.empresa_id] }}</p>
+            <p>Projetos: {{ contagemProjetosMap[empresa.empresa_id] }}</p>
+            <p>Arquivos: {{ contagemArquivosMap[empresa.empresa_id] }}</p>
+            <p>Status:
+              @if (empresa.empresa_status == 1) {
+                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                  Ativo
+                </span>
+              } @else if (empresa.empresa_status == 2) {
+                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                  Em Progresso
+                </span>
+              } @else if (empresa.empresa_status == 3) {
+                <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                  <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                  Em analise
+                </span>
+              } @else if (empresa.empresa_status == 4) {
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                  <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                  Inadiplente
+                </span>
+              } @else if (empresa.empresa_status == 0) {
+                <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                  <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                  Inativo
+                </span>
+              } @else if (empresa.empresa_status == -1) {
+                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                  <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                  Deletado
+                </span>
+              }
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</div>
+
+<!-- Paginação -->
+<div class="flex flex-col items-center mt-4">
+  <span class="text-sm text-gray-700 dark:text-gray-400">
+    Mostrando
+    <span class="font-semibold text-gray-900 dark:text-white">{{ startItem }}</span> a
+    <span class="font-semibold text-gray-900 dark:text-white">{{ endItem }}</span> de
+      <span class="font-semibold text-gray-900 dark:text-white">{{ totalItems }}</span> Empresas
+  </span>
+  <div class="inline-flex mt-2 xs:mt-0">
+    <button
+      (click)="previousPage()"
+      [disabled]="currentPage === 1"
+      class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+      </svg>
+      Anterior
+    </button>
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage * pageSize >= totalItems"
+      class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      Próximo
+      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+
+

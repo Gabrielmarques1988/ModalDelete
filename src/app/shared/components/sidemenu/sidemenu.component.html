@@ -1,0 +1,123 @@
+<button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+  <span class="sr-only">Open sidebar</span>
+  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+  </svg>
+</button>
+<aside class="w-[259px] h-full shadow-lg bg-gray-50 transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+     @if(this.decodedToken.usuario_tipo == 2 || this.decodedToken.usuario_tipo == 1){
+       <app-buscarempresa (empresaSelecionada)="receberEmpresa($event)" [usuario]="decodedToken" ></app-buscarempresa>
+     }
+     @if(this.decodedToken.usuario_tipo == 3 ){
+       <app-title-empresa [usuario]="decodedToken"></app-title-empresa>
+     }
+     <!-- @if((this.decodedToken.usuario_tipo == 2 || this.decodedToken.usuario_tipo == 1) && empresaSelected == true ){
+       <div class="flex flex-wrap justify-center items-center">
+         <app-modal-criacaodeempresa></app-modal-criacaodeempresa>
+       </div>
+     } -->
+     @if (this.empresaSelected == true) {
+       <div class="max-h-[600px] mb-[10px] pt-2 flex flex-col items-center container-snap overflow-y-auto transforml opacity-100 transition-transform translate-y-0 duration-300 ease-out">
+           @for (projeto of empresas.projeto ; track projeto.projeto_id) {
+             <button type="button"(click)="onButtonClickDisciplinas(projeto.projeto_id!)" class="hover:bg-[#D1D5DB] active:bg-[#D1D5DB] flex items-center mb-2 mt-1 w-[234.75px] rounded-[7.89px] h-[32.55px] pt-[4.93px] pl-[10.93px] pb-[4.93px] " >
+               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M7.111 20A3.111 3.111 0 0 1 4 16.889v-12C4 4.398 4.398 4 4.889 4h4.444a.89.89 0 0 1 .89.889v12A3.111 3.111 0 0 1 7.11 20Zm0 0h12a.889.889 0 0 0 .889-.889v-4.444a.889.889 0 0 0-.889-.89h-4.389a.889.889 0 0 0-.62.253l-3.767 3.665a.933.933 0 0 0-.146.185c-.868 1.433-1.581 1.858-3.078 2.12Zm0-3.556h.009m7.933-10.927 3.143 3.143a.889.889 0 0 1 0 1.257l-7.974 7.974v-8.8l3.574-3.574a.889.889 0 0 1 1.257 0Z"/>
+               </svg>
+               <span   class="mr-3 ml-3 w-[150px] text-left text-[#262626] font-inter leading-[21px] text-[14px] font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                 {{projeto.projeto_descricao}}
+               </span>
+               <div>
+                 @if(isButtonActiveDisciplinas(projeto.projeto_id!)){
+                   <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m5 15 7-7 7 7"/>
+                   </svg>
+                 }
+                 @if(!isButtonActiveDisciplinas(projeto.projeto_id!)){
+                   <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
+                 </svg>
+                 }
+               </div>
+             </button>
+             @if(isButtonActiveDisciplinas(projeto.projeto_id!)){
+               @for(disciplina of projeto.disciplina; track disciplina.disciplina_id){
+                 <div>
+                     <div class="flex flex-row-reverse items-center">
+                         <button type="button" (click)="onButtonClickEtapas(disciplina.disciplina_id!)"class=" pl-[20px]  hover:bg-[#D1D5DB] active:bg-[#D1D5DB] flex items-center mb-2 mt-1 w-[234.75px] rounded-[7.89px] h-[32.55px] pt-[4.93px] pl-[10.93px] pb-[4.93px] " >
+                             @if(isButtonActiveEtapas(disciplina.disciplina_id!)){
+                               <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                   <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 .087.586l2.977-7.937A1 1 0 0 1 6 10h12V9a2 2 0 0 0-2-2h-4.532l-1.9-2.28A2 2 0 0 0 8.032 4H4Zm2.693 8H6.5l-3 8H18l3-8H6.693Z" clip-rule="evenodd"/>
+                               </svg>
+                             }
+                             @if(!isButtonActiveEtapas(disciplina.disciplina_id!)){
+                               <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                 <path fill-rule="evenodd" d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z" clip-rule="evenodd"/>
+                               </svg>
+                             }
+                             <span (click)=etapas() class="mr-3 ml-3 w-[145px] text-left text-[#262626] font-inter leading-[21px] text-[14px] font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                               {{disciplina.disciplina_descricao}}
+                             </span>
+                             @if(isButtonActiveEtapas(disciplina.disciplina_id!)){
+                               <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m5 15 7-7 7 7"/>
+                               </svg>
+                             }
+                             @if(!isButtonActiveEtapas(disciplina.disciplina_id!)){
+                               <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
+                               </svg>
+                             }
+                         </button>
+                     </div>
+                     @if(isButtonActiveEtapas(disciplina.disciplina_id!)){
+                     <div>
+                         @for(etapa of disciplina.etapa; track etapa.etapa_id){
+                           <button type="button" (click)="onButtonClickArquivos(etapa.etapa_id!)"class=" pl-[40px]  hover:bg-[#D1D5DB] active:bg-[#D1D5DB] flex items-center mb-2 mt-1 w-[234.75px] rounded-[7.89px] h-[32.55px] pt-[4.93px] pl-[10.93px] pb-[4.93px] " >
+                               @if(isButtonActiveArquivos(etapa.etapa_id!)){
+                                 <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                     <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 .087.586l2.977-7.937A1 1 0 0 1 6 10h12V9a2 2 0 0 0-2-2h-4.532l-1.9-2.28A2 2 0 0 0 8.032 4H4Zm2.693 8H6.5l-3 8H18l3-8H6.693Z" clip-rule="evenodd"/>
+                                 </svg>
+                               }
+                               @if(!isButtonActiveArquivos(etapa.etapa_id!)){
+                                 <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                   <path fill-rule="evenodd" d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z" clip-rule="evenodd"/>
+                                 </svg>
+                               }
+                               <span (click)=etapas() class="mr-3 ml-3 w-[124px] text-left text-[#262626] font-inter leading-[21px] text-[14px] font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                                 {{etapa.etapa_descricao}}
+                               </span>
+                               @if(isButtonActiveArquivos(etapa.etapa_id!)){
+                                 <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m5 15 7-7 7 7"/>
+                                 </svg>
+                               }
+                               @if(!isButtonActiveArquivos(etapa.etapa_id!)){
+                                 <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="m19 9-7 7-7-7"/>
+                               </svg>
+                               }
+                           </button>
+                           @if(isButtonActiveArquivos(etapa.etapa_id!)){
+                             <div>
+                                   <button type="button"class=" pl-[60px]  hover:bg-[#D1D5DB] active:bg-[#D1D5DB] flex items-center mb-2 mt-1 w-[234.75px] rounded-[7.89px] h-[32.55px] pt-[4.93px] pl-[10.93px] pb-[4.93px] " >
+                                       <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                         <path fill-rule="evenodd" d="M3 6a2 2 0 0 1 2-2h5.532a2 2 0 0 1 1.536.72l1.9 2.28H3V6Zm0 3v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3Z" clip-rule="evenodd"/>
+                                       </svg>
+                                       <span (click)=etapas() class="mr-3 ml-3 w-[124px] text-left text-[#262626] font-inter leading-[21px] text-[14px] font-medium overflow-hiddentext-ellipsis whitespace-nowrap">
+                                           teste
+                                       </span>
+                                   </button>
+                             </div>
+                           }
+                         }
+                     </div>
+                     }
+                 </div>
+               }
+             }
+           }
+       </div>
+     }
+     <!-- @if(this.decodedToken.usuario_tipo == 2 || this.decodedToken.usuario_tipo == 1){
+         <app-menuadmin></app-menuadmin>
+     } -->

@@ -1,0 +1,86 @@
+<!-- Modal botao -->
+<div class="flex flex-row p-2 ml-5">
+  <button data-modal-target="send-modal" data-modal-toggle="send-modal" class="block text-white bg-[color:var(--cinza-principal-escuro)] hover:bg-[color:var(--cinza-principal-medio)] focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    Enviar Arquivo
+  </button>
+</div>
+
+<!-- Conteudo modal -->
+<div id="send-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative w-full max-w-4xl max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                  Enviar arquivo
+              </h3>
+              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="send-modal">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Fechar</span>
+              </button>
+          </div>
+
+          <!-- Modal body Form -->
+          <form [formGroup]="formulario" class="p-4 md:p-5">
+            <div class="grid gap-6 mb-6">
+              <div>
+                <label for="file_name" class="block mb-2 text-sm font-medium text-[color:var(--cinza-principal-escuro)] ">Nome
+                  do arquivo</label>
+                <input type="text" id="file_name" formControlName="file_name"
+                  class="bg-white border border-[color:var(--cinza-border)]text-[color:var(--cinza-principal-escuro)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  placeholder="Nome do arquivo" required readonly/>
+              </div>
+              <!-- <div>
+                <label for="file_comment"
+                  class="block mb-2 text-sm font-medium text-[color:var(--cinza-principal-escuro)] ">Comentário</label>
+                <input type="text" id="file_comment"
+                  class="bg-white border border-[color:var(--cinza-border)]text-[color:var(--cinza-principal-escuro)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  placeholder="Comentário" required />
+              </div> -->
+              <div class="mb-6">
+                @if(!formulario.valid){
+                <p class="mt-1 text-sm text-red-500 dark:text-red-300" id="erro_formulario">Preencha todos os campos</p>
+                }
+              </div>
+              <div>
+                <label class="block mb-2 text-sm font-medium text-[color:var(--cinza-principal-escuro)]"
+                  for="dropzone-file">Selecionar Arquivo</label>
+                <!-- <input type="file" id="default_size"
+                  class="bg-gray-50 border border-[color:var(--cinza-border)]text-[color:var(--cinza-principal-escuro)] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  required /> -->
+
+                <div class="flex items-center justify-between w-full">
+                  <label for="dropzone-file"
+                    class="flex flex-col items-center justify-center w-2/5 h-22 border-2 border-[color:var(--cinza-border)]border-dashed rounded-lg cursor-pointer bg-white hover:bg-gray-50  ">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                      <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                      </svg>
+                      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
+                          upload</span></p>
+                      @if (selectedFileName) {
+
+                      <p class="text-md text-gray-500 flex items-center justify-center">
+                        {{ selectedFileName }}
+                      </p>
+                      }
+                    </div>
+                    <input id="dropzone-file" type="file" class="hidden" (change)="onFileSelected($event)" />
+
+                  </label>
+                  <button type="submit" (click)="onSubmit()" [disabled]="!formulario.valid" data-modal-hide="send-modal" class="px-6 py-3.5 w-1/4 mt-16 text-base font-medium text-white bg-[color:var(--cinza-principal-escuro)] hover:bg-[color:var(--cinza-principal-medio)] rounded-lg text-center">
+                    Enviar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+      </div>
+  </div>
+</div>
+
